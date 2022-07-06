@@ -1,0 +1,6 @@
+@use '../util' as u;
+
+h2 {
+      font-size: clamp(u.rem(20), u.rem(16) + 1vw, u.rem(40));
+      text-transform: uppercase;
+}

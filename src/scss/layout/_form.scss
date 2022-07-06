@@ -1,0 +1,135 @@
+@use '../util' as u;
+ 
+ .form  {
+      position: relative;
+      text-align: center;
+      margin-bottom: u.rem(17);
+      padding: u.rem(40);
+      
+      &__input {
+         border-radius: u.rem(5);
+         border: 1px solid var(--border-color);
+         text-indent: u.rem(5);
+         margin-inline: u.rem(10);
+         margin-bottom: u.rem(20);
+         width: min(100% - u.rem(40), u.rem(500));
+         height: u.em(40);
+         
+         @include u.breakpoint-up(medium) {
+            width: min(100% - u.rem(40), u.rem(1100));
+         }
+         
+         @include u.breakpoint(large) {
+            width: min(100% - u.rem(40), u.rem(300));
+            
+         }   
+      }
+      &__input:focus {
+         outline: 2px solid var(--outline-color);
+      }
+      &__color{
+         position: absolute;
+         margin: 7px -40px 0;
+         border: none;
+         -webkit-appearance: none;
+         padding: 0;
+         width: u.em(24);
+         height: u.em(24);
+      }
+      &__color::-webkit-color-swatch-wrapper  {
+         padding: 0; 
+      }
+      &__color::-webkit-color-swatch {
+         border: none;
+      }
+      &__button {
+         width: min(100% - u.rem(40), u.rem(1000));
+         height: u.em(40);
+         border-radius: u.rem(5);
+         background: var(--nav-btn-color);
+         color: var(--color);
+         border: none; 
+         cursor: pointer;  
+         
+         @include u.breakpoint-up(medium) {
+            width: min(100% - u.rem(40), u.rem(1100));
+         }
+         
+         @include u.breakpoint(medium) {
+            width: min(100% - u.rem(40), u.rem(600));
+         }
+         @include u.breakpoint(small) {
+            width: min(100% - u.rem(40), u.rem(300));
+         }
+      }
+   }
+   
+   .meme {
+      position: relative;
+      text-align: center;
+      
+      &__image {
+         width: min(100% - u.rem(40), u.rem(1000));
+         border-radius: u.rem(3);
+         
+         @include u.breakpoint-up(medium) {
+            width: min(100% - u.rem(40), u.rem(1100));
+         }
+         
+         @include u.breakpoint(large) {
+            width: min(100% - u.rem(40), u.rem(1000));
+         }
+         
+         @include u.breakpoint(medium) {
+            width: min(100% - u.rem(40), u.rem(600));
+         }
+         
+         @include u.breakpoint(small) {
+            width: min(100% - u.rem(40), u.rem(300));
+         }
+      }
+      &__text {
+         position: absolute;
+         width: 100%;
+         margin: u.rem(15) 0;
+         padding: 0 u.rem(5);
+         letter-spacing: 1px;
+         text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 2px 0 #000,
+        2px 0 0 #000,
+        0 -2px 0 #000,
+        -2px 0 0 #000,
+        2px 2px 5px #000;
+         cursor: pointer;
+         
+         &:hover{
+            text-decoration: underline;
+            text-underline-offset: 10px;
+         }
+      }
+      .first {
+         top: u.rem(100);
+      }
+      .second {
+         top: u.rem(200);
+      }
+      .third {
+         top: u.rem(300);
+      }
+      .fourth {
+         top: u.rem(400);
+      }
+      .fifth {
+         top: u.rem(500);
+      }
+
+      &__download {
+         margin: u.rem(30) u.rem(0);
+         text-align: center;
+      }
+      
+   }

@@ -1,0 +1,12 @@
+:root {
+      --background-color: hsl(197, 24%, 94%);
+      --color: hsl(0, 0%, 100%);
+      --border-color: hsl(255, 5%, 84%);
+      --outline-color: hsl(0, 0%, 90%);
+      --nav-btn-color: linear-gradient(
+            5deg,
+            hsl(240deg 83% 46%) 0%,
+            hsl(270deg 92% 48%) 54%,
+            hsl(300deg 100% 50%) 100%
+          );
+}

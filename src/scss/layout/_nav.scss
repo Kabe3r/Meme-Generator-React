@@ -1,0 +1,15 @@
+.nav {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 65px;
+   background: var(--nav-btn-color);
+   padding: 20px;
+     
+
+   &__image {
+      height: 100%;
+      margin-right: 6px;
+   }
+}
+
