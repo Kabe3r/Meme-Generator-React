@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Meme Genrator
+# Meme Generator
 
 Meme generator is a react-sass based random-image-generator, mobile-ready, offline-storage compatible where users can choose the image edit and download,
 
