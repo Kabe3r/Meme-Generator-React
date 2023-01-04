@@ -5,7 +5,11 @@
       text-align: center;
       margin-bottom: u.rem(17);
       padding: u.rem(40);
-      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
       &__input {
          border-radius: u.rem(5);
          border: 1px solid var(--border-color);
@@ -15,14 +19,6 @@
          width: min(100% - u.rem(40), u.rem(500));
          height: u.em(40);
          
-         @include u.breakpoint-up(medium) {
-            width: min(100% - u.rem(40), u.rem(1100));
-         }
-         
-         @include u.breakpoint(large) {
-            width: min(100% - u.rem(40), u.rem(300));
-            
-         }   
       }
       &__input:focus {
          outline: 2px solid var(--outline-color);
@@ -31,7 +27,6 @@
          position: absolute;
          margin: 7px -40px 0;
          border: none;
-         -webkit-appearance: none;
          padding: 0;
          width: u.em(24);
          height: u.em(24);
@@ -42,25 +37,13 @@
       &__color::-webkit-color-swatch {
          border: none;
       }
+      &__add {
+         font-size: u.rem(32);
+         // margin-bottom: u.rem(10);
+      }
       &__button {
          width: min(100% - u.rem(40), u.rem(1000));
          height: u.em(40);
-         border-radius: u.rem(5);
-         background: var(--nav-btn-color);
-         color: var(--color);
-         border: none; 
-         cursor: pointer;  
-         
-         @include u.breakpoint-up(medium) {
-            width: min(100% - u.rem(40), u.rem(1100));
-         }
-         
-         @include u.breakpoint(medium) {
-            width: min(100% - u.rem(40), u.rem(600));
-         }
-         @include u.breakpoint(small) {
-            width: min(100% - u.rem(40), u.rem(300));
-         }
       }
    }
    
@@ -71,22 +54,6 @@
       &__image {
          width: min(100% - u.rem(40), u.rem(1000));
          border-radius: u.rem(3);
-         
-         @include u.breakpoint-up(medium) {
-            width: min(100% - u.rem(40), u.rem(1100));
-         }
-         
-         @include u.breakpoint(large) {
-            width: min(100% - u.rem(40), u.rem(1000));
-         }
-         
-         @include u.breakpoint(medium) {
-            width: min(100% - u.rem(40), u.rem(600));
-         }
-         
-         @include u.breakpoint(small) {
-            width: min(100% - u.rem(40), u.rem(300));
-         }
       }
       &__text {
          position: absolute;
@@ -129,7 +96,6 @@
 
       &__download {
          margin: u.rem(30) u.rem(0);
-         text-align: center;
       }
       
    }

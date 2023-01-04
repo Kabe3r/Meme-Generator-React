@@ -18,3 +18,13 @@ body {
       background-color: var(--background-color);
       color: var(--color);
 }
+
+button {
+      background: var(--nav-btn-color);
+      border: none;
+      border-radius: u.rem(5);
+      margin: u.rem(10) u.rem(0);
+      
+      color: var(--color);
+      cursor: pointer;
+}

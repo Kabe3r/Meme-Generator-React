@@ -2,10 +2,10 @@
 import Draggable from "react-draggable";
 
 
-function Text(props) {
+function Text({text}) {
       return (
             <Draggable>
-           <h2>{props.text}</h2>
+           <h2>{text}</h2>
             </Draggable>
       )
 }

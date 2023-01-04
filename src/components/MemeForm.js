@@ -1,28 +1,22 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import Text from "./Text";
-import Input from "./Input";
-import Button from "./Button";
-import ColorPicker from "./ColorPicker";
 
 
 function MemeForm() {
 const [meme, setMeme] = useState({
-     firstText: "",
-     secondText: "",
-     thirdText: "",
-     fourthText: "",
-     fifthText: "",
-     firstColor: "#ee00ff",
-     secondColor: "#c4d0e3",
-     thirdColor: "#66ff00",
-     fourthColor: "#3ec6ff",
-     fifthColor: "#354259",
      mainImg: "https://i.imgflip.com/2896ro.jpg",
-     boxes: "5"
 });
 
 const [memesData, setMemesData] = useState([]);
+const [input, setInput] = useState([
+     {
+          value: '',
+          color: '#3ec6ff',
+
+     }
+]);
+
 
 
 useEffect(() => {
@@ -34,16 +28,29 @@ useEffect(() => {
      getMemes();
 }, []);
 
+const addInput = (e) => {
+     e.preventDefault();
+     setInput(prevInput => {
+              return [
+                   ...prevInput,
+                   {
+                        value: '',
+                        color: '#3ec6ff',
+                    } 
+               ]
+          })
+}
 
-function handleChange(event) {
-     setMeme(prevMeme => ({
-          ...prevMeme,
-          [event.target.name]: event.target.value,
-     }));
-};
+const handleInput = (e, index) => {
+     e.preventDefault();
+     const { name, value } = e.target;
+     const list = [...input];
+     list[index][name] = value;
+     setInput(list);
+}
 
 
-function download() {
+const download = () => {
      const display = document.getElementById("memeCapture");
      html2canvas(display, {
           allowTaint: true,
@@ -60,77 +67,42 @@ function download() {
      });
 }
 
-function getMemeImage(event) {
-     event.preventDefault()
+const getMemeImage = (event) => {
+     event.preventDefault();
      const randomNum = Math.floor(Math.random() * memesData.length);
      const url = memesData[randomNum].url;
-     const box = memesData[randomNum].box_count;
      setMeme(prevMeme => ({
           ...prevMeme,
           mainImg: url,
-          boxes: box 
      }));
-   
-     const text = meme.firstText || meme.secondText || meme.thirdText || meme.fourthText || meme.fifthText;
 
-     if (text) {
-          alert("Changes are not saved");
-          meme.firstText = "";
-          meme.secondText = "";
-          meme.thirdText = "";
-          meme.fourthText = "";
-          meme.fifthText = "";
-     }
-     
-}
+     setInput(prevInput => {
+          return [
+               {
+                    value: '',
+                    color: '#3ec6ff',
+               }
+          ]
+     })
+
+  }
 
  return (
       
       <main>
       <form className="form">
-      
-        {meme.boxes === 2 ?
-           <>
-            <Input name='firstText' handleChange={handleChange} value={meme.firstText} placeholder='Enter Text'/>
-            <ColorPicker name="firstColor" handleChange={handleChange} value={meme.firstColor} />
-            <Input name='secondText' handleChange={handleChange} value={meme.secondText} placeholder='Enter Text'/>
-            <ColorPicker name="secondColor" handleChange={handleChange} value={meme.secondColor} />
-           </>
-           : meme.boxes === 3 ?
-            <>
-            <Input name='firstText'  handleChange={handleChange} value={meme.firstText} placeholder='Enter Text'/>
-            <ColorPicker name="firstColor" handleChange={handleChange} value={meme.firstColor} />
-            <Input name='secondText'  handleChange={handleChange} value={meme.secondText} placeholder='Enter Text'/>
-            <ColorPicker name="secondColor" handleChange={handleChange} value={meme.secondColor} />
-            <Input name='thirdText'  handleChange={handleChange} value={meme.thirdText} placeholder='Enter Text'/>
-            <ColorPicker name="thirdColor" handleChange={handleChange} value={meme.thirdColor} />
-           </>
-           : meme.boxes === 4 ?
-           <>
-            <Input name='firstText'  handleChange={handleChange} value={meme.firstText} placeholder='Enter Text'/>
-            <ColorPicker name="firstColor" handleChange={handleChange} value={meme.firstColor} />
-            <Input name='secondText'  handleChange={handleChange} value={meme.secondText} placeholder='Enter Text'/>
-            <ColorPicker name="secondColor" handleChange={handleChange} value={meme.secondColor} />
-            <Input name='thirdText'  handleChange={handleChange} value={meme.thirdText} placeholder='Enter Text'/>
-            <ColorPicker name="thirdColor" handleChange={handleChange} value={meme.thirdColor} />
-            <Input name='fourthText'  handleChange={handleChange} value={meme.fourthText} placeholder='Enter Text'/>
-            <ColorPicker name="fourthColor" handleChange={handleChange} value={meme.fourthColor} />
-           </>
-           : 
-           <>
-            <Input name='firstText'  handleChange={handleChange} value={meme.firstText} placeholder='Enter Text'/>
-             <ColorPicker name="firstColor" handleChange={handleChange} value={meme.firstColor} />
-            <Input name='secondText'  handleChange={handleChange} value={meme.secondText} placeholder='Enter Text'/>
-            <ColorPicker name="secondColor" handleChange={handleChange} value={meme.secondColor} />
-            <Input name='thirdText'  handleChange={handleChange} value={meme.thirdText} placeholder='Enter Text'/>
-            <ColorPicker name="thirdColor" handleChange={handleChange} value={meme.thirdColor} />
-            <Input name='fourthText'  handleChange={handleChange} value={meme.fourthText} placeholder='Enter Text'/>
-            <ColorPicker name="fourthColor" handleChange={handleChange} value={meme.fourthColor} />
-            <Input name='fifthText'  handleChange={handleChange} value={meme.fifthText} placeholder='Enter Text'/>
-            <ColorPicker name="fifthColor" handleChange={handleChange} value={meme.fifthColor} />
-           </>   
-        }
-        <Button getMemeImage={getMemeImage} />
+      <div>
+            {input.map((item, i) => {
+               return (
+                    <label>
+            <input type='text' name='value' className="form__input"  onChange={e => handleInput(e, i)}  placeholder='Enter Text' value={item.value} id={i} size={45} />
+            <input type='color' name='color'  className='form__color' onChange={e => handleInput(e, i)} value={item.color} id={i}  />
+                    </label>
+               )
+             })}
+      </div>
+            <button className="form__add" onClick={addInput} disabled={input.length > 4 ? true : false}>+</button>
+        <button className="form__button" onClick={getMemeImage}>Get Meme Images ♛</button>
       </form>
        <section>
 
@@ -138,25 +110,13 @@ function getMemeImage(event) {
        <div id="memeCapture">
             <img className="meme__image"  src={meme.mainImg} alt="Meme" crossOrigin="annoymous" />
             
-            <div style={{color: meme.firstColor}} className="meme__text first">
-            <Text draggable={true} text={meme.firstText} />
-            </div>
-            
-            <div style={{color: meme.secondColor}} className="meme__text second">
-            <Text text={meme.secondText} />
-            </div>
-
-            <div style={{color: meme.thirdColor}} className="meme__text third">
-            <Text text={meme.thirdText} />
-            </div>
-
-            <div style={{color: meme.fourthColor}} className="meme__text fourth">
-            <Text text={meme.fourthText} />
-            </div>
-
-            <div style={{color: meme.fifthColor}} className="meme__text fifth">
-            <Text text={meme.fifthText} />
-            </div>
+                    {input.map((item, i) => {
+                         return (
+                    <div key={i} style={{color: item.color}}  className={`meme__text ${i === 0 ? 'first' : i === 1 ? 'second' : i === 2 ? 'third' : i === 3 ? 'fourth' : 'fifth'}`} >
+                    <Text draggable={true} text={item.value} />
+                    </div>
+                ) 
+            })} 
        </div>
             <button className="form__button meme__download" onClick={download}>Download Image</button>
        </div>
