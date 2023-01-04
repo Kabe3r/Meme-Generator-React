@@ -39,7 +39,9 @@
       }
       &__add {
          font-size: u.rem(32);
-         // margin-bottom: u.rem(10);
+          &:active {
+            transform: scale(0.8);
+          }
       }
       &__button {
          width: min(100% - u.rem(40), u.rem(1000));
@@ -50,13 +52,19 @@
    .meme {
       position: relative;
       text-align: center;
+
+      &__position {
+         display: inline-block;
+      }
       
       &__image {
-         width: min(100% - u.rem(40), u.rem(1000));
+         width: min(100% - u.rem(10), u.rem(1000));
          border-radius: u.rem(3);
       }
       &__text {
          position: absolute;
+         display: inline;
+         left: u.rem(50);
          width: 100%;
          margin: u.rem(15) 0;
          padding: 0 u.rem(5);
@@ -78,19 +86,19 @@
             text-underline-offset: 10px;
          }
       }
-      .first {
+      .text0 {
          top: u.rem(100);
       }
-      .second {
+      .text1 {
          top: u.rem(200);
       }
-      .third {
+      .text2 {
          top: u.rem(300);
       }
-      .fourth {
+      .text3 {
          top: u.rem(400);
       }
-      .fifth {
+      .text4 {
          top: u.rem(500);
       }
 

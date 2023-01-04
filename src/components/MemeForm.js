@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
-import Text from "./Text";
+import Draggable from "react-draggable";
 
 
 function MemeForm() {
@@ -30,15 +30,20 @@ useEffect(() => {
 
 const addInput = (e) => {
      e.preventDefault();
-     setInput(prevInput => {
-              return [
-                   ...prevInput,
-                   {
-                        value: '',
-                        color: '#3ec6ff',
+
+     if (input.length < 5) {
+          setInput(prevInput => {
+               return [
+                    ...prevInput,
+                    {
+                         value: '',
+                         color: '#3ec6ff',
                     } 
                ]
           })
+     } else {
+          alert('Thanos wants to know your location!')
+     }
 }
 
 const handleInput = (e, index) => {
@@ -101,23 +106,23 @@ const getMemeImage = (event) => {
                )
              })}
       </div>
-            <button className="form__add" onClick={addInput} disabled={input.length > 4 ? true : false}>+</button>
+            <button className="form__add" onClick={addInput} >+</button>
         <button className="form__button" onClick={getMemeImage}>Get Meme Images ♛</button>
       </form>
        <section>
 
        <div className="meme">
-       <div id="memeCapture">
+       <figure id="memeCapture" className="meme__position">
             <img className="meme__image"  src={meme.mainImg} alt="Meme" crossOrigin="annoymous" />
             
                     {input.map((item, i) => {
                          return (
-                    <div key={i} style={{color: item.color}}  className={`meme__text ${i === 0 ? 'first' : i === 1 ? 'second' : i === 2 ? 'third' : i === 3 ? 'fourth' : 'fifth'}`} >
-                    <Text draggable={true} text={item.value} />
-                    </div>
+                              <Draggable>
+                    <h2 key={i} style={{color: item.color}}  className={`meme__text ${'text' + i}`} draggable={true}>{item.value}</h2>
+                              </Draggable>
                 ) 
             })} 
-       </div>
+       </figure>
             <button className="form__button meme__download" onClick={download}>Download Image</button>
        </div>
        </section>
