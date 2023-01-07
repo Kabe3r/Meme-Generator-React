@@ -52,7 +52,8 @@
    .meme {
       position: relative;
       text-align: center;
-
+      display: grid;
+      
       &__position {
          display: inline-block;
       }

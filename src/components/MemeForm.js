@@ -113,7 +113,7 @@ const getMemeImage = (event) => {
 
        <div className="meme">
        <figure id="memeCapture" className="meme__position">
-            <img className="meme__image"  src={meme.mainImg} alt="Meme" crossOrigin="annoymous" />
+            <img className="meme__image" src={meme.mainImg} alt="Meme" crossOrigin="annoymous" />
             
                     {input.map((item, i) => {
                          return (
