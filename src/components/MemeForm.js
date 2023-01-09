@@ -99,7 +99,7 @@ const getMemeImage = (event) => {
       <div>
             {input.map((item, i) => {
                return (
-                    <label>
+                    <label key={i}>
             <input type='text' name='value' className="form__input"  onChange={e => handleInput(e, i)}  placeholder='Enter Text' value={item.value} id={i} size={45} />
             <input type='color' name='color'  className='form__color' onChange={e => handleInput(e, i)} value={item.color} id={i}  />
                     </label>
@@ -117,8 +117,8 @@ const getMemeImage = (event) => {
             
                     {input.map((item, i) => {
                          return (
-                              <Draggable>
-                    <h2 key={i} style={{color: item.color}}  className={`meme__text ${'text' + i}`} draggable={true}>{item.value}</h2>
+                              <Draggable key={i}>
+                    <h2 style={{color: item.color}}  className={`meme__text ${'text' + i}`} draggable={true}>{item.value}</h2>
                               </Draggable>
                 ) 
             })} 
