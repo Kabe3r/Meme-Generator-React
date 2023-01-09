@@ -1,4 +1,4 @@
-import memeLogo from "../images/meme-logo.png";
+import memeLogo from "../images/meme-logo.ico";
 
 function Navbar () {
       return (
